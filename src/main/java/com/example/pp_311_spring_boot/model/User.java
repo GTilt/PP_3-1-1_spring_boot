@@ -1,17 +1,15 @@
 package com.example.pp_311_spring_boot.model;
 
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Positive;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -24,23 +22,19 @@ public class User {
 
 
     @NotBlank(message = "Заполни")
-    @Size(min = 2, max = 15, message = "от 2 до 15" )
-    @Column
+    @Size(min = 2, max = 15, message = "от 2 до 15")
     private String firstName;
 
     @NotBlank(message = "Заполни")
-    @Size(min = 2, max = 15, message = "от 2 до 15" )
-    @Column
+    @Size(min = 2, max = 15, message = "от 2 до 15")
     private String lastName;
 
     @NotBlank(message = "Заполни")
     @Email
-    @Column
     private String email;
 
     @Positive(message = "Возраст не может быть отрицательным")
     @Min(value = 10, message = "Не меньше 10 лет")
-    @Column
     private int age;
 
     public User() {
