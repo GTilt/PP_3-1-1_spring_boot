@@ -7,6 +7,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Positive;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -16,15 +22,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @NotBlank(message = "Заполни")
+    @Size(min = 2, max = 15, message = "от 2 до 15" )
     @Column
     private String firstName;
 
+    @NotBlank(message = "Заполни")
+    @Size(min = 2, max = 15, message = "от 2 до 15" )
     @Column
     private String lastName;
 
+    @NotBlank(message = "Заполни")
+    @Email
     @Column
     private String email;
 
+    @Positive(message = "Возраст не может быть пустым")
+    @Min(value = 10, message = "Не меньше 10 лет")
     @Column
     private int age;
 

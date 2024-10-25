@@ -5,18 +5,22 @@ import com.example.pp_311_spring_boot.service.UserService;
 import com.example.pp_311_spring_boot.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @Controller
+@Validated
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
@@ -37,7 +41,11 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@Valid @ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            model.addAttribute("user", user);
+            return "add";
+        }
         userService.addUser(user);
         System.out.println("Successfully added user");
         return "redirect:/";
@@ -56,7 +64,10 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("user") User user) {
+    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "edit";
+        }
         userService.updateUser(user);
         return "redirect:/";
     }

@@ -2,6 +2,7 @@ package com.example.pp_311_spring_boot.dao;
 
 import com.example.pp_311_spring_boot.model.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -30,6 +31,8 @@ public class UserDaoImpl implements UserDao {
             if (existingUser != null) {
                 em.remove(existingUser);
             }
+        } else {
+            throw new EntityNotFoundException("User not found");
         }
     }
 
@@ -50,14 +53,19 @@ public class UserDaoImpl implements UserDao {
                 existingUser.setLastName(user.getLastName());
                 existingUser.setEmail(user.getEmail());
                 existingUser.setAge(user.getAge());
-                em.merge(existingUser);
             }
+        } else {
+            throw new EntityNotFoundException("User not found");
         }
     }
 
 
     @Override
     public User getUserById(Long id) {
-        return em.find(User.class, id);
+        if (em.find(User.class,id) != null) {
+            return em.find(User.class, id);
+        } else {
+            throw new EntityNotFoundException("User not found");
+        }
     }
 }
