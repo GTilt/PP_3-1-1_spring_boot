@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  mysql_db:
+    image: mysql:8
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: tilt
+      MYSQL_DATABASE: spring_hiber
+      MYSQL_USER: tilt
+      MYSQL_PASSWORD: tilt
+    volumes:
+      - ./dbdata:/var/lib/mysql/
