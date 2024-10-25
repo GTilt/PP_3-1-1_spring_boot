@@ -1,11 +1,10 @@
-package com.example.pp_311_spring_boot.service;
-
+package com.example.pp_311_spring_boot.dao;
 
 import com.example.pp_311_spring_boot.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDao {
     List<User> getUsers();
 
     void deleteUser(User user);

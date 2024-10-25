@@ -1,6 +1,6 @@
 package com.example.pp_311_spring_boot.service;
 
-import com.example.pp_311_spring_boot.dao.UserDAO;
+import com.example.pp_311_spring_boot.dao.UserDao;
 import com.example.pp_311_spring_boot.model.User;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDAO userDAO;
+    private final UserDao userDAO;
 
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(UserDao userDAO) {
         this.userDAO = userDAO;
     }
 

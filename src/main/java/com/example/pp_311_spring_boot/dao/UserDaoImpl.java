@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public class UserDaoImpl implements UserDAO {
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager em;

@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import java.util.List;
 
 
 @Controller
-public class HelloController {
+public class UserController {
 
     private UserService userService;
 
-    public HelloController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
