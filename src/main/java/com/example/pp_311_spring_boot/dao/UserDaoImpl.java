@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
         return query.getResultList();
     }
 
-    @Transactional
+
     @Override
     public void deleteUser(User user) {
         if (user.getId() != null) {
@@ -36,14 +36,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Transactional
     @Override
     public User addUser(User user) {
         em.persist(user);
         return user;
     }
 
-    @Transactional
     @Override
     public void updateUser(User user) {
         if (user.getId() != null) {
@@ -60,7 +58,6 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    @Override
     public User getUserById(Long id) {
         if (em.find(User.class,id) != null) {
             return em.find(User.class, id);

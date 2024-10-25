@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -35,6 +36,7 @@ public class User {
 
     @Positive(message = "Возраст не может быть отрицательным")
     @Min(value = 10, message = "Не меньше 10 лет")
+    @Max(100)
     private int age;
 
     public User() {
