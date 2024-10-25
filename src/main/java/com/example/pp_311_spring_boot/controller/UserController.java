@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping ("/")
+    @GetMapping("/")
     public String getAllUsers(ModelMap model) {
         List<User> userList;
         userList = userService.getUsers();
@@ -55,7 +56,7 @@ public class UserController {
     @GetMapping("/edit")
     public String editUser(@RequestParam Long id, ModelMap model) {
         User user = userService.getUserById(id);
-        if(user != null) {
+        if (user != null) {
             model.addAttribute("user", user);
             return "edit";
         } else {
@@ -64,7 +65,7 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+    public String editUser(@Valid @ModelAttribute("user") User user, BindingResult result) {
         if (result.hasErrors()) {
             return "edit";
         }
@@ -75,7 +76,7 @@ public class UserController {
     @GetMapping("/delete")
     public String deleteUser(@RequestParam Long id, ModelMap model) {
         User user = userService.getUserById(id);
-        if(user != null) {
+        if (user != null) {
             model.addAttribute("user", user);
             return "delete";
         } else {

@@ -9,10 +9,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -38,7 +38,7 @@ public class User {
     @Column
     private String email;
 
-    @Positive(message = "Возраст не может быть пустым")
+    @Positive(message = "Возраст не может быть отрицательным")
     @Min(value = 10, message = "Не меньше 10 лет")
     @Column
     private int age;
